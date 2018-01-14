@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+
+<h:head>
+<style>
+.button {
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 5px;
+}
+</style>
+
+</h:head>
+<h:body>
+	<h:form id="form">
+
+		<p:dataTable var="usuario" value="#{usuarioBean.listar()}" styleClass="table .table-bordered"  rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+			<p:column headerText="Nome">
+				<h:outputText value="#{usuario.nome}" />
+			</p:column>
+			<p:column headerText="Ações">
+				<p:commandButton value="Detalhes" icon="fa fa-fw fa-remove"
+					type="submmit" oncomplete="PF('dlg').show()" update="form"
+					styleClass="button">
+					<f:setPropertyActionListener value="#{usuario}"
+						target="#{usuarioBean.usuario}" />
+				</p:commandButton>
+				<p:commandButton value="Deletar" icon="fa fa-fw fa-remove"
+					type="submmit" action="#{usuarioBean.deletar(usuario)}"
+					update="form" styleClass="button" />
+					
+ 				<!-- icon="fa fa-fw fa-remove" -->
+				<p:commandButton value="Atualizar" 
+					type="submmit" action="#{usuarioBean.editar(usuario)}"
+					update="form" styleClass="button" >
+					
+ 	<f:setPropertyActionListener target="#{usuarioBean.usuario}" value="#{usuario}"/>
+ </p:commandButton>
+
+			</p:column>
+
+
+
+		</p:dataTable>
+		<p:commandButton value="Cadastrar" icon="fa fa-fw fa-remove"
+				 action="inserirUsuario?faces-redirect=true" />
+		<p:dialog widgetVar="dlg" var="olo" modal="true" resizable="false"
+			header="Detalhes" showEffect="fade">
+			<p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+				<h:outputText value="Nome:" />
+				<h:outputText id="nomeValue"
+					value="#{usuarioBean.usuario.nome}" />
+
+				<h:outputText value="Endereço: " />
+				<h:outputText id="enderecoValue"
+					value="#{usuarioBean.usuario.endereco}" />
+
+				<h:outputText value="Cidade: " />
+				<h:outputText id="cidadeValue"
+					value="#{usuarioBean.usuario.cidade}" />
+
+				<h:outputText value="UF: " />
+				<h:outputText id="ufValue"
+					value="#{usuarioBean.usuario.uf}" />
+
+			</p:panelGrid>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

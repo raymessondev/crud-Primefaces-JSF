@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<style>
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+</style>
+
+</h:head>
+<h:body>
+	<h:messages />
+	<h:form>
+
+		<h:panelGrid columns="2" cellpadding="5">
+
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" value="#{usuarioBean.usuario.nome}" />
+
+			<p:outputLabel for="endereco" value="Endereço:" />
+			<p:inputText id="endereco"
+				value="#{usuarioBean.usuario.endereco}" />
+
+			<p:outputLabel for="cidade" value="Cidade: " />
+			<p:inputText id="cidade"
+				value="#{usuarioBean.usuario.cidade}" />
+
+			<p:outputLabel for="uf" value="UF: " />
+			<p:inputText id="uf" value="#{usuarioBean.usuario.uf}" />
+
+
+
+			<!-- immediate  == desativa a validação do primefaces -->
+			<p:commandButton value="Enviar" update="display"
+				action="#{usuarioBean.criar}" oncomplete="PF('dlg').show()"
+				process="@form" type="submmit"  />
+		</h:panelGrid>
+
+
+		<p:dialog widgetVar="dlg" modal="true" resizable="true"
+			header="Dados salvos com Sucesso" showEffect="fade" styleClass="modal">
+			<p:panelGrid id="display" columns="2" columnClasses="label,value">
+
+				<h:outputText value="Nome:" />
+				<h:outputText id="nomeValue"
+					value="#{usuarioBean.usuario.nome}" />
+
+				<h:outputText value="Endereço: " />
+				<h:outputText id="enderecoValue"
+					value="#{usuarioBean.usuario.endereco}" />
+
+				<h:outputText value="Cidade: " />
+				<h:outputText id="cidadeValue"
+					value="#{usuarioBean.usuario.cidade}" />
+
+				<h:outputText value="UF: " />
+				<h:outputText id="ufValue"
+					value="#{usuarioBean.usuario.uf}" />
+
+
+			</p:panelGrid>
+			<p:commandButton value="Ver Cadastrados" icon="fa fa-fw fa-remove"
+				type="submmit" action="listarUsuario?faces-redirect=true" />
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>

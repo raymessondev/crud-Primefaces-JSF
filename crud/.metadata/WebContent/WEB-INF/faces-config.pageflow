@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf15159420732260" configfile="/crud/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="370" id="pf15159421330871" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf15159421330882 pf15159421330883 pf15159421330884" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf15159421330885" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf15159421330882" path="index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="listarUsuario.xhtml" x="338" y="562" id="pf15159421330896" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15159421330883" path="listarUsuario.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inserirUsuario.xhtml" id="pf15159421330897" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf15159421330884" path="inserirUsuario.xhtml"/>
+  <links id="pf15159421330882" target="pf15159421330885" source="pf15159421330871" outcome="index"/>
+  <links id="pf15159421330883" target="pf15159421330896" source="pf15159421330871" outcome="listarUsuario"/>
+  <links id="pf15159421330884" target="pf15159421330897" source="pf15159421330871" outcome="inserirUsuario"/>
+</pageflow:Pageflow>
