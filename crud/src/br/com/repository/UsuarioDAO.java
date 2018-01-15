@@ -19,20 +19,14 @@ public class UsuarioDAO implements Serializable {
 
 	public void criar(Usuario usuario) {
 		try {
-
 			this.manager.persist(usuario);
-
 		} catch (Exception e) {
-
 			e.printStackTrace();
 		}
-
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listar() {
-		System.out.println();
 		return this.manager.createQuery("Select p from Usuario p").getResultList();
 
 	}
